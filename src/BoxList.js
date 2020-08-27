@@ -36,9 +36,11 @@ import NewBoxForm from './NewBoxForm';
 
    }
 
+   //render new box with Boxform data
    return(
-     <div>
-       renderBoxes();
+     <div className="Boxlist">
+       <NewBoxForm addBox={addBox} />
+       {renderBoxes()}
      </div>
    )
  }
