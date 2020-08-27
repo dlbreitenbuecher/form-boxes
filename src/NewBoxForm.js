@@ -14,13 +14,14 @@ import React, { useState } from 'react';
 
 function NewBoxForm({addBox}){
   const inititalState = {height: 0, width:0, backgroundColor:""};
+  console.log("initialSate", inititalState)
   const [formData, setFormData] = useState(inititalState);
 
 
   /** Send box form data to the parent and clear form. */
   function handleSubmit(evt){
     evt.preventDefault();
-    addbox(formData);
+    addBox(formData);
     setFormData(inititalState);
   }
 
@@ -62,7 +63,7 @@ function NewBoxForm({addBox}){
       onChange={handleChange}
     />
 
-    <button>Add a new box!</button>
+      <button onClick={handleSubmit}>Add a new box!</button>
     </form>
   )
 }

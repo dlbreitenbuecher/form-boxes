@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Box from './Box';
 import NewBoxForm from './NewBoxForm';
+import uuid from "uuid/v4"
 
 /**Displays all created boxes and new box form
  * 
@@ -8,37 +9,49 @@ import NewBoxForm from './NewBoxForm';
  * - None
  * 
  * State:
- * -boxes [{backgroundColor, width, height},...]
+ * -boxes [{backgroundColor, width, height, boxId},...]
  * 
  * App -> BoxList -> {Box, NewBoxForm}
  */
 
 function BoxList() {
-  [boxes, setBoxes] = useState([]);
+  const [boxes, setBoxes] = useState([]);
 
+  //Remove box with boxId, invoked by the child. /
+  function remove(boxId) {
+    setBoxes(boxes.filter(b => b.boxId !== boxId))
+  }
+
+  //Render boxes. /
+  function renderBoxes() {
+    console.log('does this run')
+    console.log('box', boxes)
+
+    //key uniquely id the Box component 
+    const boxesToRender = boxes.map(box => (
+      <div key={box.id}>
+        <Box backgroundColor={box.backgroundColor}
+          width={box.width}
+          height={box.height}
+          boxId={box.id}
+          remove={remove}
+        />
+      </div>)
+    )
+
+    return (
+      <div>
+        {boxesToRender}
+      </div>
+    )
+
+  }
 
   function addBox(box) {
     let newBox = { ...box, id: uuid() };
     setBoxes(boxes => [...boxes, newBox]);
   }
 
-  function renderBoxes(boxes) {
-    return (
-      <ul>
-        {boxes.map(box =>
-          <li key={box.id}>
-            <Box backgroundColor={box.backgroundColor}
-            width={box.width}
-            height={box.height}
-             />
-          </li>)
-        }
-      </ul>
-    )
-
-  }
-
-  //render new box with Boxform data
   return (
     <div className="Boxlist">
       <NewBoxForm addBox={addBox} />
