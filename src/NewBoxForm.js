@@ -45,7 +45,7 @@ function NewBoxForm({addBox}){
         name="height"
         value={formData.height}
         onChange={handleChange}
-      />
+      /> <br /> <br />
 
       <label htmlFor="width">Width:</label>
       <input
@@ -53,7 +53,7 @@ function NewBoxForm({addBox}){
         name="width"
         value={formData.width}
         onChange={handleChange}
-      />
+      /> <br /> <br />
 
     <label htmlFor="backgroundColor">backgroundColor:</label>
     <input
@@ -61,7 +61,7 @@ function NewBoxForm({addBox}){
       name="backgroundColor"
       value={formData.backgroundColor}
       onChange={handleChange}
-    />
+    /> <br />
 
       <button onClick={handleSubmit}>Add a new box!</button>
     </form>

@@ -18,20 +18,25 @@ import React from 'react';
 function Box(props) {
   const boxStyle = {
     backgroundColor: props.backgroundColor,
-    width: props.width,
-    height: props.height,
+    width: `${props.width}px`,
+    height: `${props.height}px`,
   };
 
 
   /**Delete box via parent function. */
   function handleRemove(evt){
+    console.log('In handleRemove - Box.js')
     props.remove(props.boxId);
   }
  
 
   return(
-    <div style={boxStyle}>
-      <button onClick={handleRemove}>Remove the props!</button>
+    <div>
+      <div style={boxStyle}></div>
+      
+      <button onClick={handleRemove}>
+        Remove the box!
+      </button>
     </div>
   )
 }

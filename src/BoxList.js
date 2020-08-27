@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './BoxList.css'
 import Box from './Box';
 import NewBoxForm from './NewBoxForm';
 import uuid from "uuid/v4"
@@ -19,32 +20,33 @@ function BoxList() {
 
   //Remove box with boxId, invoked by the child. /
   function remove(boxId) {
-    setBoxes(boxes.filter(b => b.boxId !== boxId))
+    console.log('In remove - BoxList.js')
+    console.log('boxId', boxId);
+    setBoxes(boxes.filter(b => b.id !== boxId))
   }
 
   //Render boxes. /
   function renderBoxes() {
-    console.log('does this run')
-    console.log('box', boxes)
+    // console.log('does this run')
+    // console.log('box', boxes)
 
     //key uniquely id the Box component 
     const boxesToRender = boxes.map(box => (
       <div key={box.id}>
-        <Box backgroundColor={box.backgroundColor}
+        <Box 
+          backgroundColor={box.backgroundColor}
           width={box.width}
           height={box.height}
           boxId={box.id}
           remove={remove}
         />
-      </div>)
-    )
+      </div>))
 
-    return (
+    return(
       <div>
         {boxesToRender}
       </div>
     )
-
   }
 
   function addBox(box) {
@@ -53,7 +55,7 @@ function BoxList() {
   }
 
   return (
-    <div className="Boxlist">
+    <div className="BoxList">
       <NewBoxForm addBox={addBox} />
       {renderBoxes()}
     </div>
