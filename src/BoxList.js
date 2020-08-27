@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Box from './Box';
 import NewBoxForm from './NewBoxForm';
 
@@ -13,37 +13,39 @@ import NewBoxForm from './NewBoxForm';
  * App -> BoxList -> {Box, NewBoxForm}
  */
 
- function BoxList() {
-   [boxes, setBoxes] = useState([]);
+function BoxList() {
+  [boxes, setBoxes] = useState([]);
 
 
-   function addBox(box) {
-     let newBox = { ...box, id: uuid() };
-     setBoxes = [...boxes, newBox];
-   }
-   
-   function renderBoxes(boxes){
-     return(
-      <div>
-      {boxes.map( box =>
-         <Box backgroundColor={box.backgroundColor}
-               width={box.width}
-               height={box.height}
-               key={box.id} />)
-       }
-       </div>
-     )
+  function addBox(box) {
+    let newBox = { ...box, id: uuid() };
+    setBoxes(boxes => [...boxes, newBox]);
+  }
 
-   }
+  function renderBoxes(boxes) {
+    return (
+      <ul>
+        {boxes.map(box =>
+          <li key={box.id}>
+            <Box backgroundColor={box.backgroundColor}
+            width={box.width}
+            height={box.height}
+             />
+          </li>)
+        }
+      </ul>
+    )
 
-   //render new box with Boxform data
-   return(
-     <div className="Boxlist">
-       <NewBoxForm addBox={addBox} />
-       {renderBoxes()}
-     </div>
-   )
- }
+  }
+
+  //render new box with Boxform data
+  return (
+    <div className="Boxlist">
+      <NewBoxForm addBox={addBox} />
+      {renderBoxes()}
+    </div>
+  )
+}
 
 
 
