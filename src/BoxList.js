@@ -17,6 +17,7 @@ import uuid from "uuid/v4"
 
 function BoxList() {
   const [boxes, setBoxes] = useState([]);
+  console.log('this is Boxes', boxes)
 
   //Remove box with boxId, invoked by the child. /
   function remove(boxId) {
@@ -50,8 +51,10 @@ function BoxList() {
   }
 
   function addBox(box) {
+    console.log('this is box', box)
     let newBox = { ...box, id: uuid() };
     setBoxes(boxes => [...boxes, newBox]);
+
   }
 
   return (
